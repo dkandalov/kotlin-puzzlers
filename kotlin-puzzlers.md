@@ -162,7 +162,7 @@ class Person(name: String) {
 // println(Person("John").name) <-- stack overflow
 ```
 
-### 99 bottles
+### Package 99
 [](https://youtrack.jetbrains.com/issue/KT-10494)
 ```
 package `99`
