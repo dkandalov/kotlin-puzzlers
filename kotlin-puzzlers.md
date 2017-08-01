@@ -8,6 +8,8 @@ fun main2() = {
 main1()
 main2()
 ```
+[](https://giphy.com/gifs/cat-fail-quO0X65yj6gw0)
+
 
 ### Hello multiline world
 [](http://stackoverflow.com/questions/32993586/templates-escaping-in-kotlin-multiline-strings/32994616#32994616)
@@ -18,12 +20,15 @@ You would need to use a standard string with newlines
 or you could use the literal representation
 `""" ... ${'$'}eq ... "`
 
+
 ### What am I
 Mentioned by someone on kotlin slack channel.
 ```
 val whatAmI = {}()
 println(whatAmI)
 ```
+[](https://giphy.com/gifs/whoa-fractal-cuboid-13pu4qCsptlSpi)
+
 
 ### I am this
 [](https://github.com/angryziber/kotlin-puzzlers/blob/master/src/functions/iAmThis/IAmThis.kts)
@@ -35,6 +40,8 @@ data class IAm(val foo: String) {
 }
 println(IAm("bar").hello())
 ```
+[](https://giphy.com/gifs/infinite-cube-fractal-mb3Ih9l0Oxub6)
+
 
 ### Return return of power throw
 ```
@@ -44,6 +51,8 @@ fun `return return`() {
     return return
 }
 ```
+[](https://giphy.com/gifs/acttIrNAHaoco)
+
 
 ### Expressions or not?
 ```
@@ -56,6 +65,8 @@ println(f)
 val c = class C
 println(c)
 ```
+[](https://giphy.com/gifs/funny-dog-fail-XEjgXErwfn0Bi)
+
 
 ### Null or empty?
 ```
@@ -71,6 +82,8 @@ fun main(args: Array<String>) {
 val s1 : String? = x?.toString()
 val s2 : String? = x.toString()
 ```
+[](https://giphy.com/gifs/dog-fail-5VW5snb1OFkE8)
+
 
 ### List or not?
 [](https://github.com/angryziber/kotlin-puzzlers/blob/master/src/interop/aListIsNotAList/AListOrNotAList.kts)
@@ -80,6 +93,8 @@ println(x is kotlin.collections.List<*>)
 println(x is kotlin.collections.MutableList<*>)
 println(x is java.util.List<*>)
 ```
+[](https://giphy.com/gifs/afv-funny-fail-lol-l41lPaVXzvGGMuAQ8)
+
 
 ### Collection equality
 [](https://youtrack.jetbrains.com/issue/KT-8511)
@@ -88,6 +103,8 @@ println(listOf(1, 2, 3) == listOf(1, 2, 3)) // true
 println(listOf(1, 2, 3).asSequence() == listOf(1, 2, 3).asSequence()) // false
 println(sequenceOf(1, 2, 3) == sequenceOf(1, 2, 3)) // false
 ```
+[](https://giphy.com/gifs/fractal-pY7sxlaBAkBH2)
+
 
 ### Mutable read-only
 [](https://github.com/angryziber/kotlin-puzzlers/blob/master/src/collections/javaMapping/readonly-to-mutable.kts)[]
@@ -99,6 +116,8 @@ if (readonly is MutableList) {
 }
 println(readonly)
 ```
+[](https://giphy.com/gifs/htIyJa96ik8Vi)
+
 
 ### Defaulted map
 [](https://youtrack.jetbrains.com/issue/KT-11851)
@@ -106,6 +125,8 @@ println(readonly)
 val map = mapOf<Any, Any>().withDefault{ "default" }
 println(map["1"]) // output null
 ```
+[](https://giphy.com/gifs/football-skills-z75PUpyuVxcxa)
+
 
 ### Exhaustive when
 ```
@@ -127,9 +148,33 @@ fun printClassOf(x: X) {
     }
 }
 ```
+[](https://giphy.com/gifs/fractal-lq4k7gLh7b4pG)
+
 
 ### Exhaustive main
 [Subclasses of sealed class have to be nested if defined inside a class](https://youtrack.jetbrains.com/issue/KT-17139https://youtrack.jetbrains.com/issue/KT-17139)
+[](https://giphy.com/gifs/cat-fail-animal-c3XM8SZ4g2Teg)
+
+
+### Exhaustive enum
+```
+enum class Color {
+    Red, Green, Blue;
+    companion object
+}
+
+fun Color.Companion.from(s: String) = when (s) {
+    "#FF0000" -> Red
+    "#00FF00" -> Green
+    else -> null
+}
+
+fun main(args: Array<String>) {
+    println(Color.from("#00FF00"))
+}
+```
+[](https://giphy.com/gifs/fractals-argWWdxS9uFUI)
+
 
 ### Primitive overload
 [](https://gist.github.com/npryce/b3710efcecd031b4321e6d4e7a58b8d0)
@@ -151,6 +196,8 @@ fun main(args: Array<String>) {
     javaClass.m(null as Int?)
 }
 ```
+[](https://giphy.com/gifs/party-pizza-pizza58e2a1c2e81a0281819863-Ub8XEam5vXbMY)
+
 
 ### Get me John
 [](https://github.com/angryziber/kotlin-puzzlers/blob/master/src/properties/getMeJohn/GetMeJohn.kts)
@@ -174,7 +221,7 @@ fun main(args: Array<String>) {
     println(bottles::class.java.canonicalName)
 }
 ```
-
+[](https://giphy.com/gifs/5gZvwC0vCFpmg)
 
 
 ## More
@@ -227,18 +274,3 @@ if (x is Int && x is String) {
 
 ### Weird chaining
 https://github.com/angryziber/kotlin-puzzlers/tree/master/src/syntax/weirdChaining
-
-
-### Gifs
-https://images.duckduckgo.com/iu/?u=http%3A%2F%2Fwww.moillusions.com%2Fwp-content%2Fuploads%2F2013%2F11%2Fdaeb7c724d956013a0b2c411bd610dcf_original.gif&f=1
-https://images.duckduckgo.com/iu/?u=https%3A%2F%2F38.media.tumblr.com%2F2960f5d32dc6bd525c374fe3a3f573aa%2Ftumblr_nbehznoMpK1qic3lco1_500.gif&f=1
-https://www.facebook.com/photo.php?fbid=1189021667801492&set=a.427882653915401.87783.100000810112605&type=3&theater
-https://images.duckduckgo.com/iu/?u=http%3A%2F%2Ftheunshaven.rooms.cwal.net%2FImages%2520fit%2520for%2520HTML%2520Posting%2520Madness%2FFractal%2520Teddies.gif&f=1
-https://images.duckduckgo.com/iu/?u=http%3A%2F%2Filiketowastemytime.com%2Fsites%2Fdefault%2Ffiles%2Fmind-bending-gif-images11.gif&f=1
-https://images.duckduckgo.com/iu/?u=http%3A%2F%2F38.media.tumblr.com%2Fa5fa1cd3d56640c03017cd8a3832225b%2Ftumblr_njsa5pajkt1qzbj7zo1_500.gif&f=1
-https://images.duckduckgo.com/iu/?u=http%3A%2F%2Fgrowld.com%2Fwp-content%2Fuploads%2F2014%2F02%2Finfinity-doge.gif&f=1
-https://images.duckduckgo.com/iu/?u=http%3A%2F%2Fwww.threadbombing.com%2Fdata%2Fmedia%2F67%2F20090523045404_auto.gif&f=1
-
-https://media.giphy.com/media/xT9KVexx939mRgS8tG/giphy.gif
-https://media.giphy.com/media/Ub8XEam5vXbMY/giphy.gif
-https://media.giphy.com/media/c3XM8SZ4g2Teg/giphy.gif
