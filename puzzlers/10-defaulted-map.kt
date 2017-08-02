@@ -9,16 +9,6 @@ fun main(args: Array<String>) {
 
 }
 
-interface SomeInterface<K,V> {
-
-    /**
-     * Returns the value corresponding to the given [key],
-     * or `null` if such a key is not present in the map.
-     */
-    operator fun get(key: K): V?
-
-}
-
 /*
 A) 42; 42
 

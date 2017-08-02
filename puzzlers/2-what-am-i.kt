@@ -1,5 +1,5 @@
 fun main(args: Array<String>) {
-    val whatAmI: Unit = {}()
+    val whatAmI = {}()
     println(whatAmI)
 }
 

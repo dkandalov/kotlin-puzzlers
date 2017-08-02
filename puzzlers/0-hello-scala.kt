@@ -1,7 +1,7 @@
 @file:Suppress("UnusedLambdaExpressionBody")
 
     fun main1() = println("Hello Kotlin")
-    fun main2(): () -> Unit = {
+    fun main2() = {
         println("Hello Scala")
     }
 

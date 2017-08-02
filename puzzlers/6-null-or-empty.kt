@@ -30,9 +30,3 @@ C) prints nothing
 
 D) doesn't compile
 */
-
-/*
-java.lang.AssertionError:
-expected a value that is equal to "null"
-but it was null
-*/

@@ -1,19 +1,17 @@
 @file:Suppress("PackageDirectoryMismatch")
 package expression_or_not
 
-fun main(args: Array<String>) {
 
-//    var i = 0
-//    val j = i = 42
-//    println(j)
+    var i = 0
+    val j = i = 42
+    println(j)
 
     val f = fun() = 42
     println(f)
 
-//    val c = class C
-//    println(c)
+    val c = class C
+    println(c)
 
-}
 
 /*
 A) 42

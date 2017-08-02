@@ -3,7 +3,7 @@
         val world = "multiline world"
         println("""
             Hello
-            ${'$'}world
+            \$world
         """.trimIndent())
     }
 

@@ -1,23 +1,22 @@
 
     fun main(args: Array<String>) {
         JavaClass.m(42)
-        JavaClass.m(43 as Int?)
+        JavaClass.m(Integer(43))
         JavaClass.m(null as Int?)
     }
 
 /*
 A) int: 42
-   Integer: 43
-   Integer: null
+   int: 43
+   NullPointerException
 
 B) Integer: 42
    Integer: 43
    Integer: null
-   
-C) Integer: 42
+
+C) int: 42
    Integer: 43
-   NullPointerException
+   Integer: null
 
 D) doesn't compile
-
 */

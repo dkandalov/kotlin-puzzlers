@@ -11,8 +11,6 @@
         }
     }
 
-//    val Unit.exhaustive get() = this
-
     fun main(args: Array<String>) {
         printClassOf(A())
         printClassOf(B())

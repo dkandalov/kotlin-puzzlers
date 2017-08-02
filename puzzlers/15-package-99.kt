@@ -1,12 +1,13 @@
 @file:Suppress("PackageDirectoryMismatch")
 
-//package `99`
+    package `99`
 
-fun main(args: Array<String>) {
     class Bottles
     val bottles = Bottles()
-    println(bottles::class.java)
-}
+
+    fun main(args: Array<String>) {
+        println(bottles::class.java)
+    }
 
 /*
 A) class 99.Bottles

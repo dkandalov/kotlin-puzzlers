@@ -27,7 +27,7 @@ Mentioned by someone on kotlin slack channel.
 val whatAmI = {}()
 println(whatAmI)
 ```
-[](https://giphy.com/gifs/whoa-fractal-cuboid-13pu4qCsptlSpi)
+[](https://giphy.com/gifs/afv-funny-fail-lol-l41lPaVXzvGGMuAQ8)
 
 
 ### I am this
@@ -51,7 +51,7 @@ fun `return return`() {
     return return
 }
 ```
-[](https://giphy.com/gifs/acttIrNAHaoco)
+[](https://giphy.com/gifs/humor-comics-pictures-q1PQaH0DBHjl6)
 
 
 ### Expressions or not?
@@ -93,7 +93,7 @@ println(x is kotlin.collections.List<*>)
 println(x is kotlin.collections.MutableList<*>)
 println(x is java.util.List<*>)
 ```
-[](https://giphy.com/gifs/afv-funny-fail-lol-l41lPaVXzvGGMuAQ8)
+[](https://giphy.com/gifs/whoa-fractal-cuboid-13pu4qCsptlSpi)
 
 
 ### Collection equality
@@ -103,7 +103,7 @@ println(listOf(1, 2, 3) == listOf(1, 2, 3)) // true
 println(listOf(1, 2, 3).asSequence() == listOf(1, 2, 3).asSequence()) // false
 println(sequenceOf(1, 2, 3) == sequenceOf(1, 2, 3)) // false
 ```
-[](https://giphy.com/gifs/fractal-pY7sxlaBAkBH2)
+[](https://giphy.com/gifs/shocked-ernie-bert-umMYB9u0rpJyE)
 
 
 ### Mutable read-only
@@ -196,7 +196,7 @@ fun main(args: Array<String>) {
     javaClass.m(null as Int?)
 }
 ```
-[](https://giphy.com/gifs/party-pizza-pizza58e2a1c2e81a0281819863-Ub8XEam5vXbMY)
+[](https://giphy.com/gifs/piglets-baby-pigs-4hdocBfTTLs9a)
 
 
 ### Get me John
@@ -274,3 +274,7 @@ if (x is Int && x is String) {
 
 ### Weird chaining
 https://github.com/angryziber/kotlin-puzzlers/tree/master/src/syntax/weirdChaining
+
+
+
+[](https://giphy.com/gifs/share-thankyou-thanksthankyou-4BylJD2QxStzO)

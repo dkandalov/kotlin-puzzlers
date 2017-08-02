@@ -1,6 +1,6 @@
 fun main(args: Array<String>) {
 
-    val readonly = listOf(1, 2, 3)
+    val readonly = mutableListOf(1, 2, 3)
     if (readonly is MutableList) {
         readonly.add(4)
     }
@@ -15,5 +15,5 @@ B) [1, 2, 3, 4]
 
 C) UnsupportedOperationException
 
-D) Will not compile
+D) doesn't compile
 */

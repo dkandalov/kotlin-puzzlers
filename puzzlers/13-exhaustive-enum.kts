@@ -3,11 +3,10 @@
     import Color.Red
 
     enum class Color {
-        Red, Green, Blue;
-        companion object
+        Red, Green, Blue
     }
 
-    fun Color.Companion.from(s: String) = when (s) {
+    fun Color.from(s: String) = when (s) {
         "#FF0000" -> Red
         "#00FF00" -> Green
         else -> null

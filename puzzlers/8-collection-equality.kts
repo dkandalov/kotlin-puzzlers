@@ -1,4 +1,3 @@
-fun main(args: Array<String>) {
 
     println(listOf(1, 2, 3) == listOf(1, 2, 3))
 
@@ -6,7 +5,6 @@ fun main(args: Array<String>) {
 
     println(sequenceOf(1, 2, 3) == sequenceOf(1, 2, 3))
 
-}
 
 /*
 A) true; true; true
