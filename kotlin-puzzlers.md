@@ -13,13 +13,16 @@ main2()
 
 ### Hello multiline world
 [](http://stackoverflow.com/questions/32993586/templates-escaping-in-kotlin-multiline-strings/32994616#32994616)
-If I want to use $ sign in multiline strings, how do I escape it?
-`val condition = """ ... $eq ... """`
-You would need to use a standard string with newlines
-`" ...\n \$eq \n ... "`
-or you could use the literal representation
-`""" ... ${'$'}eq ... "`
-
+```
+fun main(args: Array<String>) {
+    val world = "multiline world"
+    println("""
+        Hello
+        \$world
+    """.trimIndent())
+}
+```
+[](https://giphy.com/gifs/Jk4ZT6R0OEUoM)
 
 ### What am I
 Mentioned by someone on kotlin slack channel.
@@ -45,13 +48,15 @@ println(IAm("bar").hello())
 
 ### Return return of power throw
 ```
-throw throw throw Exception()
-return return 42
-fun `return return`() {
-    return return
+fun f1(): Int {
+    return return 42
+}
+
+fun f2() {
+    throw throw Exception()
 }
 ```
-[](https://giphy.com/gifs/humor-comics-pictures-q1PQaH0DBHjl6)
+[](https://giphy.com/gifs/amazing-hat-shapes-RJFKSWoi7m9qg)
 
 
 ### Expressions or not?
@@ -79,15 +84,18 @@ fun main(args: Array<String>) {
 
 [](https://gist.github.com/npryce/e62036ab9b75538d5c5352d48727e191)
 ```
-val s1 : String? = x?.toString()
-val s2 : String? = x.toString()
+val x: Any? = null
+val s1: String? = x?.toString()
+val s2: String? = x.toString()
+
+assertThat(s1, equalTo(s2))
 ```
 [](https://giphy.com/gifs/dog-fail-5VW5snb1OFkE8)
 
 
 ### List or not?
 [](https://github.com/angryziber/kotlin-puzzlers/blob/master/src/interop/aListIsNotAList/AListOrNotAList.kts)
-``` kotlin
+```
 val x = listOf(1, 2, 3)
 println(x is kotlin.collections.List<*>)
 println(x is kotlin.collections.MutableList<*>)
@@ -99,9 +107,9 @@ println(x is java.util.List<*>)
 ### Collection equality
 [](https://youtrack.jetbrains.com/issue/KT-8511)
 ```
-println(listOf(1, 2, 3) == listOf(1, 2, 3)) // true
-println(listOf(1, 2, 3).asSequence() == listOf(1, 2, 3).asSequence()) // false
-println(sequenceOf(1, 2, 3) == sequenceOf(1, 2, 3)) // false
+println(listOf(1, 2, 3) == listOf(1, 2, 3))
+println(listOf(1, 2, 3).asSequence() == listOf(1, 2, 3).asSequence()) 
+println(sequenceOf(1, 2, 3) == sequenceOf(1, 2, 3))
 ```
 [](https://giphy.com/gifs/shocked-ernie-bert-umMYB9u0rpJyE)
 
@@ -122,8 +130,10 @@ println(readonly)
 ### Defaulted map
 [](https://youtrack.jetbrains.com/issue/KT-11851)
 ```
-val map = mapOf<Any, Any>().withDefault{ "default" }
-println(map["1"]) // output null
+var n = 42
+val map = emptyMap<Any,Any>().withDefault{ n++ }
+println(map["missing key"])
+println(map["missing key"])
 ```
 [](https://giphy.com/gifs/football-skills-z75PUpyuVxcxa)
 
@@ -152,18 +162,38 @@ fun printClassOf(x: X) {
 
 
 ### Exhaustive main
-[Subclasses of sealed class have to be nested if defined inside a class](https://youtrack.jetbrains.com/issue/KT-17139https://youtrack.jetbrains.com/issue/KT-17139)
+[](https://youtrack.jetbrains.com/issue/KT-17139https://youtrack.jetbrains.com/issue/KT-17139)
+```
+object Main {
+    sealed class X {
+        class A: X()
+        class B: X()
+        class C: X()
+    }
+
+    @JvmStatic fun main(args: Array<String>) {
+        printClassOf(X.C())
+    }
+
+    fun printClassOf(x: X) = when (x) {
+        is X.A -> println("is A")
+        is X.B -> println("is B")
+        is X -> println("is X")
+    }.exhaustive
+
+    val Unit.exhaustive get() = this
+} 
+```
 [](https://giphy.com/gifs/cat-fail-animal-c3XM8SZ4g2Teg)
 
 
 ### Exhaustive enum
 ```
 enum class Color {
-    Red, Green, Blue;
-    companion object
+    Red, Green, Blue
 }
 
-fun Color.Companion.from(s: String) = when (s) {
+fun Color.from(s: String) = when (s) {
     "#FF0000" -> Red
     "#00FF00" -> Green
     else -> null
@@ -190,24 +220,13 @@ public class JavaClass {
 }
 
 fun main(args: Array<String>) {
-    val javaClass = JavaClass()
-    javaClass.m(42)
-    javaClass.m(Integer(43))
-    javaClass.m(null as Int?)
+    JavaClass.m(42)
+    JavaClass.m(Integer(43))
+    JavaClass.m(null as Int?)
 }
 ```
 [](https://giphy.com/gifs/piglets-baby-pigs-4hdocBfTTLs9a)
 
-
-### Get me John
-[](https://github.com/angryziber/kotlin-puzzlers/blob/master/src/properties/getMeJohn/GetMeJohn.kts)
-```
-class Person(name: String) {
-    var name = name
-        get() = if (name == "John") "Jaan" else name
-}
-// println(Person("John").name) <-- stack overflow
-```
 
 ### Package 99
 [](https://youtrack.jetbrains.com/issue/KT-10494)
@@ -225,6 +244,16 @@ fun main(args: Array<String>) {
 
 
 ## More
+
+### Get me John
+[](https://github.com/angryziber/kotlin-puzzlers/blob/master/src/properties/getMeJohn/GetMeJohn.kts)
+```
+class Person(name: String) {
+    var name = name
+        get() = if (name == "John") "Jaan" else name
+}
+println(Person("John").name)
+```
 
 ### X
 [](https://github.com/angryziber/kotlin-puzzlers/blob/master/src/interop/platformNulls/PlatformNulls.kt)
@@ -250,7 +279,7 @@ assertThat(End.add(2), equalTo<Tree<Int>>(Node(2)))
 
 ### X
 from [](https://discuss.kotlinlang.org/t/1-plus-2-3/2182)
-``` kotlin
+```
 println(-1 xor 3) //result: -4
 println(-1.xor(3)) //result: -2
 

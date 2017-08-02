@@ -1,13 +1,9 @@
 @file:Suppress("ReplaceGetOrSet")
 
-fun main(args: Array<String>) {
-
     var n = 42
     val map = emptyMap<Any,Any>().withDefault{ n++ }
     println(map["missing key"])
     println(map["missing key"])
-
-}
 
 /*
 A) 42; 42
