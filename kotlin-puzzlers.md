@@ -1,3 +1,8 @@
+### Java puzzlers
+[](https://www.amazon.com/Java-Puzzlers-Traps-Pitfalls-Corner/dp/032133678X)
+[](http://www.syfy.com/sites/syfy/files/styles/2200xauto/public/kitaoka_circles.jpg?itok=Mwwov-en)
+
+
 ### Hello scala
 [](https://github.com/angryziber/kotlin-puzzlers/blob/master/src/functions/kotlinVsScala/KotlinVsScala.kts)
 ```
@@ -56,7 +61,7 @@ fun f2() {
     throw throw Exception()
 }
 ```
-[](https://giphy.com/gifs/amazing-hat-shapes-RJFKSWoi7m9qg)
+[](https://giphy.com/gifs/imadeit-qKltgF7Aw515K)
 
 
 ### Expressions or not?
@@ -101,7 +106,7 @@ println(x is kotlin.collections.List<*>)
 println(x is kotlin.collections.MutableList<*>)
 println(x is java.util.List<*>)
 ```
-[](https://giphy.com/gifs/whoa-fractal-cuboid-13pu4qCsptlSpi)
+[](https://giphy.com/gifs/shocked-ernie-bert-umMYB9u0rpJyE)
 
 
 ### Collection equality
@@ -111,7 +116,7 @@ println(listOf(1, 2, 3) == listOf(1, 2, 3))
 println(listOf(1, 2, 3).asSequence() == listOf(1, 2, 3).asSequence()) 
 println(sequenceOf(1, 2, 3) == sequenceOf(1, 2, 3))
 ```
-[](https://giphy.com/gifs/shocked-ernie-bert-umMYB9u0rpJyE)
+[](https://giphy.com/gifs/whoa-fractal-cuboid-13pu4qCsptlSpi)
 
 
 ### Mutable read-only
@@ -124,7 +129,7 @@ if (readonly is MutableList) {
 }
 println(readonly)
 ```
-[](https://giphy.com/gifs/htIyJa96ik8Vi)
+[](https://giphy.com/gifs/inception-7pHTiZYbAoq40)
 
 
 ### Defaulted map
@@ -158,7 +163,7 @@ fun printClassOf(x: X) {
     }
 }
 ```
-[](https://giphy.com/gifs/fractal-lq4k7gLh7b4pG)
+[](https://giphy.com/gifs/cheezburger-fail-other-water-YjWoK5F5R9ZRe)
 
 
 ### Exhaustive main
