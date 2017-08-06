@@ -120,7 +120,7 @@ println(sequenceOf(1, 2, 3) == sequenceOf(1, 2, 3))
 
 
 ### Mutable read-only
-[](https://github.com/angryziber/kotlin-puzzlers/blob/master/src/collections/javaMapping/readonly-to-mutable.kts)[]
+[](https://github.com/angryziber/kotlin-puzzlers/blob/master/src/collections/javaMapping/readonly-to-mutable.kts)
 ```
 val readonly = listOf(1, 2, 3)
 
@@ -167,7 +167,7 @@ fun printClassOf(x: X) {
 
 
 ### Exhaustive main
-[](https://youtrack.jetbrains.com/issue/KT-17139https://youtrack.jetbrains.com/issue/KT-17139)
+[](https://youtrack.jetbrains.com/issue/KT-17139)
 ```
 object Main {
     sealed class X {
