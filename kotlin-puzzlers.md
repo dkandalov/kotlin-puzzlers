@@ -309,6 +309,47 @@ if (x is Int && x is String) {
 ### Weird chaining
 https://github.com/angryziber/kotlin-puzzlers/tree/master/src/syntax/weirdChaining
 
+### X
+By [Ruslan Ibragimov](https://github.com/IRus) on Kotlin slack.
+```
+fun main(args: Array<String>) {
+    val s = ""
+    val i = 0
+    val b = false
+    
+    println(s::class == String::class)
+    println(i::class == Int::class)
+    println(b::class == Boolean::class)
 
+    fun test(a: Any) = when (a::class) {
+        String::class -> println("String")
+        Int::class -> println("Int")
+        Boolean::class -> println("Boolean")
+        else -> println("Else")
+    }
+
+    test(s)
+    test(i)
+    test(b)
+}
+```
+Actual output:
+```
+true
+true
+true
+String
+Else
+Else
+```
+The fix:
+```
+fun test(a: Any) = when (a::class) {
+    String::class -> println("String")
+    Int::class, Int::class.javaPrimitiveType -> println("Int")
+    Boolean::class, Boolean::class.javaPrimitiveType -> println("Boolean")
+    else -> println("Else")
+}
+```
 
 [](https://giphy.com/gifs/share-thankyou-thanksthankyou-4BylJD2QxStzO)
