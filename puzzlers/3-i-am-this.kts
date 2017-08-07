@@ -13,5 +13,5 @@ B) IAm(foo=bar)
 
 C) bar
 
-D) Will not compile
+D) doesn't compile
 */

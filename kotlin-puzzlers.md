@@ -4,42 +4,40 @@
 
 
 ### Hello scala
-[](https://github.com/angryziber/kotlin-puzzlers/blob/master/src/functions/kotlinVsScala/KotlinVsScala.kts)
+The answer is `A` because `main2()` function has type `() -> Unit` and, therefore, 
+its invocation will return a lambda object and won't print anything.
 ```
 fun main1() = println("Hello Kotlin")
-fun main2() = {
+fun main2() {  <-- no "= {" here 
     println("Hello Scala")
 }
 main1()
 main2()
 ```
-[](https://giphy.com/gifs/cat-fail-quO0X65yj6gw0)
+[Origin](https://github.com/angryziber/kotlin-puzzlers/blob/master/src/functions/kotlinVsScala/KotlinVsScala.kts)
+[Gif](https://giphy.com/gifs/cat-fail-quO0X65yj6gw0)
 
 
 ### Hello multiline world
-[](http://stackoverflow.com/questions/32993586/templates-escaping-in-kotlin-multiline-strings/32994616#32994616)
-```
-fun main(args: Array<String>) {
-    val world = "multiline world"
-    println("""
-        Hello
-        \$world
-    """.trimIndent())
-}
-```
-[](https://giphy.com/gifs/Jk4ZT6R0OEUoM)
+The answer is `C` because `\$` doesn't escape dollar char in multiline strings.
+To escape dollar use something like this `"""price: 100${'$'}"""`.
+[Origin](http://stackoverflow.com/questions/32993586/templates-escaping-in-kotlin-multiline-strings/32994616#32994616)
+[Gif](https://giphy.com/gifs/Jk4ZT6R0OEUoM)
+
 
 ### What am I
-Mentioned by someone on kotlin slack channel.
+The answer is `B` because of the types:
 ```
-val whatAmI = {}()
+val f: () -> Unit = {}
+val whatAmI: Unit = f()
 println(whatAmI)
 ```
-[](https://giphy.com/gifs/afv-funny-fail-lol-l41lPaVXzvGGMuAQ8)
+Origin: mentioned by someone on kotlin slack channel.
+[Gif](https://giphy.com/gifs/afv-funny-fail-lol-l41lPaVXzvGGMuAQ8)
 
 
 ### I am this
-[](https://github.com/angryziber/kotlin-puzzlers/blob/master/src/functions/iAmThis/IAmThis.kts)
+The answer is `C` because within `foo.apply{...}` lambda `this` refers to target object which is `foo`.
 ```
 data class IAm(val foo: String) {
   fun hello() = foo.apply {
@@ -48,10 +46,17 @@ data class IAm(val foo: String) {
 }
 println(IAm("bar").hello())
 ```
-[](https://giphy.com/gifs/infinite-cube-fractal-mb3Ih9l0Oxub6)
+[Origin](https://github.com/angryziber/kotlin-puzzlers/blob/master/src/functions/iAmThis/IAmThis.kts)
+[Gif](https://giphy.com/gifs/infinite-cube-fractal-mb3Ih9l0Oxub6)
 
 
 ### Return return of power throw
+The answer is `A` because:
+ - both `return 42` and `throw Exception()` have type `Nothing`
+ - `Nothing` is subtype of all types, therefore, from type checker point of view
+   `return <Nothing>` is ok because `Nothing` is subtype of `Int` and
+   `throw <Nothing>` is ok because `Nothing` is subtype of `Exception`
+ - at runtime only the rightmost expression is executed, i.e. `return 42` and `throw Exception`
 ```
 fun f1(): Int {
     return return 42
@@ -61,33 +66,34 @@ fun f2() {
     throw throw Exception()
 }
 ```
-[](https://giphy.com/gifs/imadeit-qKltgF7Aw515K)
+See [A Whirlwind Tour of the Kotlin Type Hierarchy](http://natpryce.com/articles/000818.html).
+[Gif](https://giphy.com/gifs/imadeit-qKltgF7Aw515K)
 
 
-### Expressions or not?
+### Expression or not?
+The answer is `C` because variable assignment and class declaration are not expressions:
 ```
-var x = 0
-val xx = x = 1
+    var i = 0
+    i = 42
+    val j = i
+    println(j)
 
-val f = fun(s: String) = s + "!"
-println(f)
+    val f = fun() = 42
+    println(f)
 
-val c = class C
-println(c)
+    class C
+    val c = C::class.java
+    println(c)
 ```
-[](https://giphy.com/gifs/funny-dog-fail-XEjgXErwfn0Bi)
+[Gif](https://giphy.com/gifs/funny-dog-fail-XEjgXErwfn0Bi)
 
 
 ### Null or empty?
-```
-fun main(args: Array<String>) {
-    val s: String? = null
-    if (s?.isEmpty()) println("is empty")
-    if (s.isNullOrEmpty()) println("is null or empty")
-} 
-```
+The answer is `D` because `s?.isEmpty()` has type `Boolean?` which cannot be used in `if`.
+The fix is use elvis operator `if (s?.isEmpty() ?: false) println("is empty")`
+or explicit equality `if (s?.isEmpty() == ture) println("is empty")`.
 
-[](https://gist.github.com/npryce/e62036ab9b75538d5c5352d48727e191)
+[Similar issue](https://gist.github.com/npryce/e62036ab9b75538d5c5352d48727e191):
 ```
 val x: Any? = null
 val s1: String? = x?.toString()
@@ -95,163 +101,112 @@ val s2: String? = x.toString()
 
 assertThat(s1, equalTo(s2))
 ```
-[](https://giphy.com/gifs/dog-fail-5VW5snb1OFkE8)
+[Gif](https://giphy.com/gifs/dog-fail-5VW5snb1OFkE8)
 
 
 ### List or not?
-[](https://github.com/angryziber/kotlin-puzzlers/blob/master/src/interop/aListIsNotAList/AListOrNotAList.kts)
-```
-val x = listOf(1, 2, 3)
-println(x is kotlin.collections.List<*>)
-println(x is kotlin.collections.MutableList<*>)
-println(x is java.util.List<*>)
-```
-[](https://giphy.com/gifs/shocked-ernie-bert-umMYB9u0rpJyE)
+The answer is `C` because:
+ - `kotlin.collections.List` on JVM compiled to `java.util.List` so 1st and 3rd options are `true`
+ - `x is kotlin.collections.MutableList<*>` ends up calling `kotlin.jvm.internal.TypeIntrinsics.isMutableList`
+   which also return `true`
+[Origin](https://github.com/angryziber/kotlin-puzzlers/blob/master/src/interop/aListIsNotAList/AListOrNotAList.kts)
+[Gif](https://giphy.com/gifs/shocked-ernie-bert-umMYB9u0rpJyE)
 
 
 ### Collection equality
-[](https://youtrack.jetbrains.com/issue/KT-8511)
-```
-println(listOf(1, 2, 3) == listOf(1, 2, 3))
-println(listOf(1, 2, 3).asSequence() == listOf(1, 2, 3).asSequence()) 
-println(sequenceOf(1, 2, 3) == sequenceOf(1, 2, 3))
-```
-[](https://giphy.com/gifs/whoa-fractal-cuboid-13pu4qCsptlSpi)
+The answer is `D` because sequences don't define equality 
+(similar to iterators because they can only be consumed once and can be infinity).
+
+[Origin](https://youtrack.jetbrains.com/issue/KT-8511)
+[Gif](https://giphy.com/gifs/whoa-fractal-cuboid-13pu4qCsptlSpi)
 
 
 ### Mutable read-only
-[](https://github.com/angryziber/kotlin-puzzlers/blob/master/src/collections/javaMapping/readonly-to-mutable.kts)
-```
-val readonly = listOf(1, 2, 3)
+The answer is `C` because `listOf()` calls `Arrays.asList()` which returns unmodifiable collection.
+The fix is to use `mutableListOf()` instead of `listOf()`.
 
-if (readonly is MutableList) {
-    readonly.add(4)
-}
-println(readonly)
-```
-[](https://giphy.com/gifs/inception-7pHTiZYbAoq40)
+[Origin](https://github.com/angryziber/kotlin-puzzlers/blob/master/src/collections/javaMapping/readonly-to-mutable.kts)
+[Gif](https://giphy.com/gifs/inception-7pHTiZYbAoq40)
 
 
 ### Defaulted map
-[](https://youtrack.jetbrains.com/issue/KT-11851)
+The answer is `C` because `withDefault` doesn't change behaviour of `Map.get()`.
+If you used function with the same name in Scala or Groovy, forget about it.
+The fix is to use `getOrDefault()`: 
 ```
 var n = 42
-val map = emptyMap<Any,Any>().withDefault{ n++ }
-println(map["missing key"])
-println(map["missing key"])
+val map = emptyMap<Any,Any>()
+println(map.getOrDefault("missing key", n++))
+println(map.getOrDefault("missing key", n++))
 ```
-[](https://giphy.com/gifs/football-skills-z75PUpyuVxcxa)
+[Origin](https://youtrack.jetbrains.com/issue/KT-11851)
+[Gif](https://giphy.com/gifs/football-skills-z75PUpyuVxcxa)
 
 
 ### Exhaustive when
-```
-sealed class X
-class A : X()
-class B : X()
-class C : X()
+The answer is `A` because `when` is only exhaustive if it's assigned to a value,
+e.g. using `val Unit.exhaustive get() = this`.
 
-fun main(args: Array<String>) {
-    printClassOf(A())
-    printClassOf(B())
-    printClassOf(C())
-}
-
-fun printClassOf(x: X) {
-    when (x) {
-        is A -> println("is A")
-        is B -> println("is B")
-    }
-}
-```
-[](https://giphy.com/gifs/cheezburger-fail-other-water-YjWoK5F5R9ZRe)
+[Gif](https://giphy.com/gifs/cheezburger-fail-other-water-YjWoK5F5R9ZRe)
 
 
 ### Exhaustive main
-[](https://youtrack.jetbrains.com/issue/KT-17139)
+The answer is `C` because sealed subclasses still have to be nested if defined inside another class or object.
+The fix is to make classes nested:
 ```
-object Main {
-    sealed class X {
-        class A: X()
-        class B: X()
-        class C: X()
-    }
-
-    @JvmStatic fun main(args: Array<String>) {
-        printClassOf(X.C())
-    }
-
-    fun printClassOf(x: X) = when (x) {
-        is X.A -> println("is A")
-        is X.B -> println("is B")
-        is X -> println("is X")
-    }.exhaustive
-
-    val Unit.exhaustive get() = this
-} 
+sealed class X {
+	class A: X()
+	class B: X()
+	class C: X()
+}
 ```
-[](https://giphy.com/gifs/cat-fail-animal-c3XM8SZ4g2Teg)
+[Origin](https://youtrack.jetbrains.com/issue/KT-17139)
+[Gif](https://giphy.com/gifs/cat-fail-animal-c3XM8SZ4g2Teg)
 
 
 ### Exhaustive enum
+The answer is `D` because `Color.from` is extension function for enum instances not the class.
+The fix:
 ```
 enum class Color {
-    Red, Green, Blue
+    Red, Green, Blue; // need semicolor here!
+    companion object
 }
 
-fun Color.from(s: String) = when (s) {
+fun Color.Companion.from(s: String) = when (s) {
     "#FF0000" -> Red
     "#00FF00" -> Green
     else -> null
 }
-
-fun main(args: Array<String>) {
-    println(Color.from("#00FF00"))
-}
 ```
-[](https://giphy.com/gifs/fractals-argWWdxS9uFUI)
+[Gif](https://giphy.com/gifs/fractals-argWWdxS9uFUI)
 
 
 ### Primitive overload
-[](https://gist.github.com/npryce/b3710efcecd031b4321e6d4e7a58b8d0)
-```
-public class JavaClass {
-	public void m(int value) {
-		System.out.println("int: " + value);
-	}
+The answer is `D` because `Integer` is not subtype of `Int`.
+The fix is to use `43 as Int?`, then the answer will be `C`.
 
-	public void m(Integer value) {
-		System.out.println("Integer: " + value);
-	}
-}
-
-fun main(args: Array<String>) {
-    JavaClass.m(42)
-    JavaClass.m(Integer(43))
-    JavaClass.m(null as Int?)
-}
-```
-[](https://giphy.com/gifs/piglets-baby-pigs-4hdocBfTTLs9a)
+[Origin](https://gist.github.com/npryce/b3710efcecd031b4321e6d4e7a58b8d0)
+[Gif](https://giphy.com/gifs/piglets-baby-pigs-4hdocBfTTLs9a)
 
 
 ### Package 99
-[](https://youtrack.jetbrains.com/issue/KT-10494)
-```
-package `99`
+The answer is `D`. This is a compiler bug.
+The workaround is to use `val bottles = Bottles()` inside `main` function.
 
-class Bottles()
-val bottles = Bottles()
-
-fun main(args: Array<String>) {
-    println(bottles::class.java.canonicalName)
-}
-```
-[](https://giphy.com/gifs/5gZvwC0vCFpmg)
+[Origin](https://youtrack.jetbrains.com/issue/KT-10494)
+[Gif](https://giphy.com/gifs/5gZvwC0vCFpmg)
 
 
-## More
+### Thank you slide
+[Thank you gif](https://giphy.com/gifs/share-thankyou-thanksthankyou-4BylJD2QxStzO)
+
+
+
+## More puzzlers
 
 ### Get me John
-[](https://github.com/angryziber/kotlin-puzzlers/blob/master/src/properties/getMeJohn/GetMeJohn.kts)
+[Origin](https://github.com/angryziber/kotlin-puzzlers/blob/master/src/properties/getMeJohn/GetMeJohn.kts)
 ```
 class Person(name: String) {
     var name = name
@@ -261,7 +216,7 @@ println(Person("John").name)
 ```
 
 ### X
-[](https://github.com/angryziber/kotlin-puzzlers/blob/master/src/interop/platformNulls/PlatformNulls.kt)
+[Origin](https://github.com/angryziber/kotlin-puzzlers/blob/master/src/interop/platformNulls/PlatformNulls.kt)
 ```
 class Kotlin {
   fun hello(name: String) = print("Hello $name")
@@ -283,7 +238,7 @@ assertThat(End.add(2), equalTo(Node(2)))
 assertThat(End.add(2), equalTo<Tree<Int>>(Node(2)))
 
 ### X
-from [](https://discuss.kotlinlang.org/t/1-plus-2-3/2182)
+[Origin](https://discuss.kotlinlang.org/t/1-plus-2-3/2182)
 ```
 println(-1 xor 3) //result: -4
 println(-1.xor(3)) //result: -2
@@ -352,4 +307,3 @@ fun test(a: Any) = when (a::class) {
 }
 ```
 
-[](https://giphy.com/gifs/share-thankyou-thanksthankyou-4BylJD2QxStzO)

@@ -15,7 +15,7 @@ If you're interested, there is a larger collection of puzzlers in Anton Keks [ko
 
 There are two options:
  - download slides [from dropbox](https://www.dropbox.com/sh/ad1d0lnhsxy29d2/AAAYfnYSMkuOVlSA7NGo-wFba?dl=0),
-   open in Keynote app and look at them sequentially
+   open in Keynote app and look at them sequentially;
  - look at files in `puzzlers` directory (preferably don't open them in IDE because it might highlight some of issues with the code).
-   Guess the correct answer, then copy paste code into IDE and run it to find actual answer.
+   Guess the correct answer, then copy paste code into IDE and run it to find actual answer or look up answer in `kotlin-puzzlers.md` file.
    
