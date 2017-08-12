@@ -1,7 +1,7 @@
 ### Kotlin puzzlers
 
-Puzzler is small program which has somewhat unexpected behaviour
-and helps to learn about programming language idiosyncrasies.
+Puzzler is a small program which has somewhat unexpected behaviour
+and can help you learn about programming language idiosyncrasies.
 
 These puzzlers were inspired by the [Java Puzzlers book](https://www.amazon.com/Java-Puzzlers-Traps-Pitfalls-Corner/dp/032133678X)
 and originally prepared for Kotlin London User Group [meetup](https://www.meetup.com/kotlin-london/events/241918493/). 

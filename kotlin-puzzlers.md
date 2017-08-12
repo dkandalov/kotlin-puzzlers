@@ -307,3 +307,48 @@ fun test(a: Any) = when (a::class) {
 }
 ```
 
+### X
+[](https://discuss.kotlinlang.org/t/puzzler-that-crushed-my-production/3845)
+```
+private fun foo(one: (String) -> Unit = {}, two: (String) -> Unit = {}) {
+    one("one")
+    two("two")
+}
+
+fun main(args: Array<String>) {
+    foo({ print(it) })
+    foo { print(it) } 
+}
+```
+
+
+### X
+[](https://medium.com/@trionkidnapper/kotlin-beware-the-silent-cast-5fed4f4c4aa6)
+[](https://youtrack.jetbrains.com/issue/KT-18938)
+```
+val i = 10.5
+if (i in 1..10) { 
+    println("$i is within the range of 1-10")
+} else {
+    println("$i is not in range of 1-10")     
+}
+```
+
+### X
+IIRC mentioned by Duncan
+```
+class Bob {
+    fun Bob.foo() = Unit
+}
+
+fun Any.foo() = when(this) {
+    is Bob -> foo()
+    else -> error("")
+}
+
+class Test {
+    @Test fun `kills the JVM`() {
+        Bob().foo()
+    }
+}
+```
