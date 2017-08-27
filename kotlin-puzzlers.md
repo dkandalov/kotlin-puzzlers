@@ -88,7 +88,7 @@ The answer is `C` because variable assignment and class declaration are not expr
 [Gif](https://giphy.com/gifs/funny-dog-fail-XEjgXErwfn0Bi)
 
 
-### Null or empty?
+### Null empty
 The answer is `D` because `s?.isEmpty()` has type `Boolean?` which cannot be used in `if`.
 The fix is use elvis operator `if (s?.isEmpty() ?: false) println("is empty")`
 or explicit equality `if (s?.isEmpty() == ture) println("is empty")`.
@@ -256,10 +256,12 @@ println(Integer.toBinaryString(1 xor 3))
 http://stackoverflow.com/questions/35272761/how-to-compare-two-arrays-in-kotlin/35275418#35275418
 
 ### X
+```
 val x: Any = Unit
 if (x is Int && x is String) {
   x.length + x
 }
+```
 
 ### Weird chaining
 https://github.com/angryziber/kotlin-puzzlers/tree/master/src/syntax/weirdChaining
