@@ -88,6 +88,19 @@ The answer is `C` because variable assignment and class declaration are not expr
 [Gif](https://giphy.com/gifs/funny-dog-fail-XEjgXErwfn0Bi)
 
 
+### Floating range
+[](https://medium.com/@trionkidnapper/kotlin-beware-the-silent-cast-5fed4f4c4aa6)
+[](https://youtrack.jetbrains.com/issue/KT-18938)
+```
+val i = 10.5
+if (i in 1..10) { 
+    println("$i is within the range of 1-10")
+} else {
+    println("$i is not in range of 1-10")     
+}
+```
+
+
 ### Null empty
 The answer is `D` because `s?.isEmpty()` has type `Boolean?` which cannot be used in `if`.
 The fix is use elvis operator `if (s?.isEmpty() ?: false) println("is empty")`
@@ -323,18 +336,6 @@ fun main(args: Array<String>) {
 }
 ```
 
-
-### X
-[](https://medium.com/@trionkidnapper/kotlin-beware-the-silent-cast-5fed4f4c4aa6)
-[](https://youtrack.jetbrains.com/issue/KT-18938)
-```
-val i = 10.5
-if (i in 1..10) { 
-    println("$i is within the range of 1-10")
-} else {
-    println("$i is not in range of 1-10")     
-}
-```
 
 ### X
 IIRC mentioned by Duncan
