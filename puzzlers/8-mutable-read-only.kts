@@ -1,6 +1,6 @@
 fun main(args: Array<String>) {
 
-    val readonly = mutableListOf(1, 2, 3)
+    val readonly = listOf(1, 2, 3)
     if (readonly is MutableList) {
         readonly.add(4)
     }

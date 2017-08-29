@@ -99,6 +99,7 @@ if (i in 1..10) {
     println("$i is not in range of 1-10")     
 }
 ```
+[Gif](https://giphy.com/gifs/nba-fail-basketball-xT9KVexx939mRgS8tG)
 
 
 ### Null empty
