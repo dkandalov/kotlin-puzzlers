@@ -7,3 +7,5 @@ class Foo(val i: Int) {
         println(i)
     }
 }
+
+val f1 = wtf@{ n: Int -> wtf@(wtf@n + wtf@2) }
