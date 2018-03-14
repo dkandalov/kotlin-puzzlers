@@ -14,8 +14,11 @@ Foo()
 
 /*
 A) null
+
 B) empty string
+
 C) doesn't compile
+
 D) woof
 */
 

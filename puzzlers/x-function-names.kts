@@ -7,7 +7,10 @@ import org.junit.Test
 
 /*
 A) ok; ok; ok; ok
+
 B) error; ok; ok error
+
 C) error; ok; error; error
+
 D) error; error; error; error
 */
