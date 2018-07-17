@@ -1,4 +1,4 @@
-// Observed by https://twitter.com/tom_puter
+// Observed by https://twitter.com/tom_puter (see https://youtrack.jetbrains.com/issue/KT-25549)
 @file:Suppress("UNCHECKED_CAST")
 
 fun <T> String.parse(): List<T> =
